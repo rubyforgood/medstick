@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :providers
   get "static/index"
   get "static/page"
   resources :regions
