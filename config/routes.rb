@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "static/index"
+  get "static/page"
   resources :regions
   resource :session
   resources :passwords, param: :token
@@ -13,5 +15,7 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  get "pages/:name", to: "static#page"
+
+  root "static#index"
 end
