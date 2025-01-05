@@ -19,14 +19,14 @@ RSpec.describe "/users", type: :request do
   let(:valid_attributes) { { "email_address" => "myaddress",
     "password" => "mypassword" } }
 
-
+  let(:admin_user) { FactoryBot.create(:user, is_admin: true, email_address: "i_am_unique") }
   let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
   }
 
   describe "GET /index" do
     it "renders a successful response" do
-      User.create! valid_attributes
+      post session_url, params: { email_address: admin_user.email_address, password: admin_user.password }
       get users_url
       expect(response).to be_successful
     end
@@ -34,14 +34,15 @@ RSpec.describe "/users", type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      user = User.create! valid_attributes
-      get user_url(user)
+      post session_url, params: { email_address: admin_user.email_address, password: admin_user.password }
+      get user_url(admin_user)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
+      post session_url, params: { email_address: admin_user.email_address, password: admin_user.password }
       get new_user_url
       expect(response).to be_successful
     end
@@ -49,8 +50,8 @@ RSpec.describe "/users", type: :request do
 
   describe "GET /edit" do
     it "renders a successful response" do
-      user = User.create! valid_attributes
-      get edit_user_url(user)
+      post session_url, params: { email_address: admin_user.email_address, password: admin_user.password }
+      get edit_user_url(admin_user)
       expect(response).to be_successful
     end
   end
@@ -58,12 +59,14 @@ RSpec.describe "/users", type: :request do
   describe "POST /create" do
     context "with valid parameters" do
       it "creates a new User" do
+        post session_url, params: { email_address: admin_user.email_address, password: admin_user.password }
         expect {
           post users_url, params: { user: valid_attributes }
         }.to change(User, :count).by(1)
       end
 
       it "redirects to the created user" do
+        post session_url, params: { email_address: admin_user.email_address, password: admin_user.password }
         post users_url, params: { user: valid_attributes }
         expect(response).to redirect_to(user_url(User.last))
       end
@@ -71,12 +74,14 @@ RSpec.describe "/users", type: :request do
 
     context "with invalid parameters" do
       it "does not create a new User" do
+        post session_url, params: { email_address: admin_user.email_address, password: admin_user.password }
         expect {
           post users_url, params: { user: invalid_attributes }
         }.to change(User, :count).by(0)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
+        post session_url, params: { email_address: admin_user.email_address, password: admin_user.password }
         post users_url, params: { user: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -90,6 +95,7 @@ RSpec.describe "/users", type: :request do
       }
 
       it "updates the requested user" do
+        post session_url, params: { email_address: admin_user.email_address, password: admin_user.password }
         user = User.create! valid_attributes
         patch user_url(user), params: { user: new_attributes }
         user.reload
@@ -97,6 +103,7 @@ RSpec.describe "/users", type: :request do
       end
 
       it "redirects to the user" do
+        post session_url, params: { email_address: admin_user.email_address, password: admin_user.password }
         user = User.create! valid_attributes
         patch user_url(user), params: { user: new_attributes }
         user.reload
@@ -106,6 +113,7 @@ RSpec.describe "/users", type: :request do
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
+        post session_url, params: { email_address: admin_user.email_address, password: admin_user.password }
         user = User.create! valid_attributes
         patch user_url(user), params: { user: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
@@ -115,6 +123,7 @@ RSpec.describe "/users", type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested user" do
+      post session_url, params: { email_address: admin_user.email_address, password: admin_user.password }
       user = User.create! valid_attributes
       expect {
         delete user_url(user)
@@ -122,6 +131,7 @@ RSpec.describe "/users", type: :request do
     end
 
     it "redirects to the users list" do
+      post session_url, params: { email_address: admin_user.email_address, password: admin_user.password }
       user = User.create! valid_attributes
       delete user_url(user)
       expect(response).to redirect_to(users_url)
