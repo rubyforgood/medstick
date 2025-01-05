@@ -95,52 +95,17 @@
 
 
             </li>
-            <% if Current.user.is_admin? %>
-            <li class="sidebar-title">Admin Area</li>
-
-            <li
-                class="sidebar-item  ">
-                <%= link_to regions_path, class: 'sidebar-link' do %>
-                    <i class="bi bi-file-earmark-medical-fill"></i>
-                    <span>Region</span>
-                <% end %>
-
-
-            </li>
-            <li
-                class="sidebar-item  ">
-                <%= link_to users_path, class: 'sidebar-link' do %>
-                    <i class="bi bi-file-earmark-medical-fill"></i>
-                    <span>Users</span>
-                <% end %>
-            </li>
-            <li
-                class="sidebar-item  ">
-                <a href="form-layout.html" class='sidebar-link'>
-                    <i class="bi bi-file-earmark-medical-fill"></i>
-                    <span>Provider</span>
-                </a>
-
-
-            </li>
-            <li
-                class="sidebar-item  ">
-                <a href="form-layout.html" class='sidebar-link'>
-                    <i class="bi bi-file-earmark-medical-fill"></i>
-                    <span>Language</span>
-                </a>
-
-
-            </li>
-            <li
-                class="sidebar-item  ">
-                <a href="form-layout.html" class='sidebar-link'>
-                    <i class="bi bi-file-earmark-medical-fill"></i>
-                    <span>Provider</span>
-                </a>
-
-
-            </li>
+            <% if current_user_is_admin? %>
+                <li class="sidebar-title">Admin Tools</li>
+                <li class="sidebar-item">
+                    <%= nav_link("Region", regions_path) %>
+                </li>
+                <li class="sidebar-item">
+                    <%= nav_link("Provider", providers_path) %>
+                </li>
+                <li class="sidebar-item">
+                    <%= nav_link("User", users_path) %>
+                </li>
             <% end %>
         </ul>
     </div>

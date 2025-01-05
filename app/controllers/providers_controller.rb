@@ -1,5 +1,4 @@
 class ProvidersController < ApplicationController
-  allow_unauthenticated_access
   before_action :set_provider, only: %i[ show edit update destroy ]
 
   # GET /providers or /providers.json

@@ -1,15 +1,24 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the UsersHelper. For example:
-#
-# describe UsersHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe UsersHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "user logged in" do
+    it "returns true if the current user is an admin" do
+      user = FactoryBot.build(:user, :admin)
+      allow(Current).to receive(:user).and_return(user)
+      expect(helper.current_user_is_admin?).to be true
+    end
+
+    it "returns false if the current user is not an admin" do
+      user = FactoryBot.build(:user)
+      allow(Current).to receive(:user).and_return(user)
+      expect(helper.current_user_is_admin?).to be false
+    end
+  end
+
+  describe "user not logged in" do
+    it "current_user_is_admin returns false" do
+      allow(Current).to receive(:user).and_return(nil)
+      expect(helper.current_user_is_admin?).to be false
+    end
+  end
 end
