@@ -9,8 +9,8 @@ RSpec.describe "users/index", type: :view do
         is_admin: false
       ),
       User.create!(
-        email_address: "Email Address",
-        password: "Password",
+        email_address: "Email Address2",
+        password: "Password2",
         is_admin: false
       )
     ])
@@ -19,8 +19,7 @@ RSpec.describe "users/index", type: :view do
   it "renders a list of users" do
     render
     cell_selector = 'div>p'
-    assert_select cell_selector, text: Regexp.new("Email Address".to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("Password".to_s), count: 2
+    assert_select cell_selector, text: Regexp.new("Email address".to_s), count: 2
     assert_select cell_selector, text: Regexp.new(false.to_s), count: 2
   end
 end

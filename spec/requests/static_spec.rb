@@ -12,9 +12,9 @@ RSpec.describe "Statics", type: :request do
     end
   end
 
-  describe "GET /page" do
+  describe "GET /pages/page" do
     it "returns http success" do
-      get "/static/page"
+      get "/pages/page"
       expect(response).to have_http_status(:success)
     end
   end

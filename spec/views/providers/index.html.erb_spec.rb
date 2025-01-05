@@ -8,7 +8,7 @@ RSpec.describe "providers/index", type: :view do
         provider_type: "Provider Type"
       ),
       Provider.create!(
-        name: "Name",
+        name: "Name2",
         provider_type: "Provider Type"
       )
     ])

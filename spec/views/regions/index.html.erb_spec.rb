@@ -7,7 +7,7 @@ RSpec.describe "regions/index", type: :view do
         name: "Name"
       ),
       Region.create!(
-        name: "Name"
+        name: "Name2"
       )
     ])
   end
