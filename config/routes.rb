@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :languages
   resources :providers
   get "static/index"
   get "static/page"
