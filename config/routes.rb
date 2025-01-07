@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get "static/index"
   get "static/page"
 
+  # temporary route for dashboard
+  get "static/page", as: "dashboard"
+
   # Defines the root path route ("/")
   root "static#index"
 end
