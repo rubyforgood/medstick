@@ -24,107 +24,127 @@ RSpec.describe "/languages", type: :request do
     skip("Add a hash of attributes invalid for your model")
   }
 
-  describe "GET /index" do
-    it "renders a successful response" do
-      Language.create! valid_attributes
-      get languages_url
-      expect(response).to be_successful
+  let(:user) { FactoryBot.create(:user) }
+  let(:admin_user) { FactoryBot.create(:user, is_admin: true) }
+
+
+  describe "as a non-admin user" do
+    describe "GET /index" do
+      it "redirects to the dashboard" do
+        login_as(user)
+        get languages_url
+        expect(response).to redirect_to(dashboard_path)
+      end
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
-      language = Language.create! valid_attributes
-      get language_url(language)
-      expect(response).to be_successful
+  describe "as an admin user" do
+    before do
+      login_as(admin_user)
     end
-  end
 
-  describe "GET /new" do
-    it "renders a successful response" do
-      get new_language_url
-      expect(response).to be_successful
+    describe "GET /index" do
+      it "renders a successful response" do
+        Language.create! valid_attributes
+        get languages_url
+        expect(response).to be_successful
+      end
     end
-  end
 
-  describe "GET /edit" do
-    it "renders a successful response" do
-      language = Language.create! valid_attributes
-      get edit_language_url(language)
-      expect(response).to be_successful
+    describe "GET /show" do
+      it "renders a successful response" do
+        language = Language.create! valid_attributes
+        get language_url(language)
+        expect(response).to be_successful
+      end
     end
-  end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new Language" do
-        expect {
+    describe "GET /new" do
+      it "renders a successful response" do
+        get new_language_url
+        expect(response).to be_successful
+      end
+    end
+
+    describe "GET /edit" do
+      it "renders a successful response" do
+        language = Language.create! valid_attributes
+        get edit_language_url(language)
+        expect(response).to be_successful
+      end
+    end
+
+    describe "POST /create" do
+      context "with valid parameters" do
+        it "creates a new Language" do
+          expect {
+            post languages_url, params: { language: valid_attributes }
+          }.to change(Language, :count).by(1)
+        end
+
+        it "redirects to the created language" do
           post languages_url, params: { language: valid_attributes }
-        }.to change(Language, :count).by(1)
+          expect(response).to redirect_to(language_url(Language.last))
+        end
       end
 
-      it "redirects to the created language" do
-        post languages_url, params: { language: valid_attributes }
-        expect(response).to redirect_to(language_url(Language.last))
-      end
-    end
+      context "with invalid parameters" do
+        it "does not create a new Language" do
+          expect {
+            post languages_url, params: { language: invalid_attributes }
+          }.to change(Language, :count).by(0)
+        end
 
-    context "with invalid parameters" do
-      it "does not create a new Language" do
-        expect {
+        it "renders a response with 422 status (i.e. to display the 'new' template)" do
           post languages_url, params: { language: invalid_attributes }
-        }.to change(Language, :count).by(0)
-      end
-
-      it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post languages_url, params: { language: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-    end
-  end
-
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested language" do
-        language = Language.create! valid_attributes
-        patch language_url(language), params: { language: new_attributes }
-        language.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "redirects to the language" do
-        language = Language.create! valid_attributes
-        patch language_url(language), params: { language: new_attributes }
-        language.reload
-        expect(response).to redirect_to(language_url(language))
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
       end
     end
 
-    context "with invalid parameters" do
-      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        language = Language.create! valid_attributes
-        patch language_url(language), params: { language: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+    describe "PATCH /update" do
+      context "with valid parameters" do
+        let(:new_attributes) {
+          skip("Add a hash of attributes valid for your model")
+        }
+
+        it "updates the requested language" do
+          language = Language.create! valid_attributes
+          patch language_url(language), params: { language: new_attributes }
+          language.reload
+          skip("Add assertions for updated state")
+        end
+
+        it "redirects to the language" do
+          language = Language.create! valid_attributes
+          patch language_url(language), params: { language: new_attributes }
+          language.reload
+          expect(response).to redirect_to(language_url(language))
+        end
+      end
+
+      context "with invalid parameters" do
+        it "renders a response with 422 status (i.e. to display the 'edit' template)" do
+          language = Language.create! valid_attributes
+          patch language_url(language), params: { language: invalid_attributes }
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
       end
     end
-  end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested language" do
-      language = Language.create! valid_attributes
-      expect {
+    describe "DELETE /destroy" do
+      it "destroys the requested language" do
+        language = Language.create! valid_attributes
+        expect {
+          delete language_url(language)
+        }.to change(Language, :count).by(-1)
+      end
+
+      it "redirects to the languages list" do
+        language = Language.create! valid_attributes
         delete language_url(language)
-      }.to change(Language, :count).by(-1)
-    end
-
-    it "redirects to the languages list" do
-      language = Language.create! valid_attributes
-      delete language_url(language)
-      expect(response).to redirect_to(languages_url)
+        expect(response).to redirect_to(languages_url)
+      end
     end
   end
 end

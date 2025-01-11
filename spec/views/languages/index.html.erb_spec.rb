@@ -8,7 +8,7 @@ RSpec.describe "languages/index", type: :view do
         file_share_folder: "File Share Folder"
       ),
       Language.create!(
-        name: "Name",
+        name: "Name2",
         file_share_folder: "File Share Folder"
       )
     ])
