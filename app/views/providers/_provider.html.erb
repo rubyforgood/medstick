@@ -1,12 +1,5 @@
-<div id="<%= dom_id provider %>">
-  <p>
-    <strong>Name:</strong>
-    <%= provider.name %>
-  </p>
-
-  <p>
-    <strong>Provider type:</strong>
-    <%= provider.provider_type %>
-  </p>
-
-</div>
+<tr id="<%= dom_id provider %>">
+  <td class="text-bold-500"><%= link_to provider.name, provider %></td>
+  <td><%= provider.provider_type %></td>
+  <td class="text-bold-500"><%= edit_link(provider) %></td>
+</tr>

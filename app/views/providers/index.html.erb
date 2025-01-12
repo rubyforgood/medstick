@@ -5,12 +5,21 @@
 <h1>Providers</h1>
 
 <div id="providers">
-  <% @providers.each do |provider| %>
-    <%= render provider %>
-    <p>
-      <%= link_to "Show this provider", provider %>
-    </p>
-  <% end %>
+  <!-- table striped -->
+    <div class="table-responsive">
+        <table class="table table-striped mb-0">
+            <thead>
+                <tr>
+                    <th>NAME</th>
+                    <th>PROVIDER TYPE</th>
+                    <th>TOOLS</th>
+                </tr>
+            </thead>
+            <tbody>
+              <%= render @providers %>
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<%= link_to "New provider", new_provider_path %>
+<%= link_to "<i class='bi bi-plus'></i> New provider".html_safe, new_provider_path, class: "btn btn-primary" %>

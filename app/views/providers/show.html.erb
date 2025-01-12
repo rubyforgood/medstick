@@ -1,10 +1,24 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @provider %>
+  <p>
+    <strong>Name:</strong>
+    <%= @provider.name %>
+  </p>
+
+  <p>
+    <strong>Provider type:</strong>
+    <%= @provider.provider_type %>
+  </p>
+
 
 <div>
-  <%= link_to "Edit this provider", edit_provider_path(@provider) %> |
-  <%= link_to "Back to providers", providers_path %>
-
-  <%= button_to "Destroy this provider", @provider, method: :delete %>
+  <p>
+    <%= edit_link(@provider) %>
+  </p>
+  <p>
+    <%= link_to "Back to providers", providers_path %> 
+  </p>
+  <p>
+    <%= destroy_link(@provider) %>
+  </p>
 </div>
