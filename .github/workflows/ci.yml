@@ -91,7 +91,7 @@ jobs:
 
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/medstick_test
           COVERAGE: true
-        run: bin/rails test
+        run: bin/rails spec
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3

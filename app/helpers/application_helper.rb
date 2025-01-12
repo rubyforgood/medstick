@@ -7,12 +7,16 @@ module ApplicationHelper
     render partial: "layouts/linked_logo"
   end
 
-  def nav_link(label, path)
-    render partial: "layouts/nav_link", locals: { label: label, path: path }
+  def nav_link(label, path, icon="file-earmark-medical-fill")
+    render partial: "layouts/nav_link", locals: { label: label, path: path, icon: icon }
   end
 
   def active_class(path)
-    current_page?(path) ? 'active' : ''
+    if path.is_a?(String)
+      current_page?(path) ? "active" : ""
+    else
+      controller_name == path.to_s.split('/').first ? "active" : ""
+    end
   end
 
   def submit_button(form)
