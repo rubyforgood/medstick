@@ -53,3 +53,36 @@ jobs:
       - name: Lint code for consistent style
         run: bin/rubocop -f github
 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Run tests with coverage
+        run: bin/rails test
+        env:
+          COVERAGE: true
+
+      - name: Upload coverage results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage
+          retention-days: 7
+
+      - name: Check coverage threshold
+        run: |
+          COVERAGE=$(cat coverage/.last_run.json | jq '.result.line')
+          if (( $(echo "$COVERAGE < 90" | bc -l) )); then
+            echo "Coverage $COVERAGE% is below the required 90%"
+            exit 1
+          fi
+
