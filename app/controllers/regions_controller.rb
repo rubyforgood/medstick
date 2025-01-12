@@ -1,5 +1,6 @@
 class RegionsController < ApplicationController
-  allow_unauthenticated_access
+  include Authorization
+
   before_action :set_region, only: %i[ show edit update destroy ]
 
   # GET /regions or /regions.json

@@ -1,7 +1,6 @@
 class LanguagesController < ApplicationController
-  allow_unauthenticated_access
+  include Authorization
   before_action :set_language, only: %i[ show edit update destroy ]
-
   # GET /languages or /languages.json
   def index
     @languages = Language.all

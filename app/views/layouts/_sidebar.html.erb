@@ -41,100 +41,56 @@
     <div class="sidebar-menu">
         <ul class="menu">
             <li class="sidebar-title">Menu</li>
-
             <li
                 class="sidebar-item  ">
                 <a href="index.html" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Dashboard</span>
                 </a>
-
-
             </li>
 
             <li
                 class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
                     <i class="bi bi-hexagon-fill"></i>
-                    <span>Topics</span>
+                    <span>Topics Go Here</span>
                 </a>
-
                 <ul class="submenu ">
-
                     <li class="submenu-item  ">
                         <a href="form-element-input.html" class="submenu-link">Input</a>
-
                     </li>
-
                     <li class="submenu-item  ">
                         <a href="form-element-input-group.html" class="submenu-link">Input Group</a>
-
                     </li>
-
                     <li class="submenu-item  ">
                         <a href="form-element-select.html" class="submenu-link">Select</a>
-
                     </li>
-
                     <li class="submenu-item  ">
                         <a href="form-element-radio.html" class="submenu-link">Radio</a>
-
                     </li>
-
                     <li class="submenu-item  ">
                         <a href="form-element-checkbox.html" class="submenu-link">Checkbox</a>
-
                     </li>
-
                     <li class="submenu-item  ">
                         <a href="form-element-textarea.html" class="submenu-link">Textarea</a>
-
                     </li>
-
                 </ul>
-
-
             </li>
-
-            <li class="sidebar-title">Admin Area</li>
-
-            <li
-                class="sidebar-item  ">
-                <%= link_to regions_path, class: 'sidebar-link' do %>
-                    <i class="bi bi-file-earmark-medical-fill"></i>
-                    <span>Region</span>
-                <% end %>
-
-
-            </li>
-            <li
-                class="sidebar-item  ">
-                <a href="form-layout.html" class='sidebar-link'>
-                    <i class="bi bi-file-earmark-medical-fill"></i>
-                    <span>Provider</span>
-                </a>
-
-
-            </li>
-            <li
-                class="sidebar-item  ">
-                <a href="form-layout.html" class='sidebar-link'>
-                    <i class="bi bi-file-earmark-medical-fill"></i>
-                    <span>Language</span>
-                </a>
-
-
-            </li>
-            <li
-                class="sidebar-item  ">
-                <a href="form-layout.html" class='sidebar-link'>
-                    <i class="bi bi-file-earmark-medical-fill"></i>
-                    <span>Provider</span>
-                </a>
-
-
-            </li>
-
+            <% if current_user_is_admin? %>
+                <li class="sidebar-title">Admin Tools</li>
+                <li class="sidebar-item">
+                    <%= nav_link("Regions", regions_path) %>
+                </li>
+                <li class="sidebar-item">
+                    <%= nav_link("Languages", languages_path) %>
+                </li>
+                <li class="sidebar-item">
+                    <%= nav_link("Providers", providers_path) %>
+                </li>
+                <li class="sidebar-item">
+                    <%= nav_link("Users", users_path) %>
+                </li>
+            <% end %>
         </ul>
     </div>
 </div>

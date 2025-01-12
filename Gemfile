@@ -63,4 +63,5 @@ end
 group :test do
     # Bring back deprecated controller tests.
     gem "rails-controller-testing"
+    gem "simplecov", require: false
 end
