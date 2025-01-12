@@ -33,15 +33,11 @@
                       <td class="text-bold-500"><%= region.name %></td>
                       <td>1</td>
                       <td class="text-end">
-                        <%= link_to region, class: "btn btn-primary btn-sm" do %>
-                          <i class="bi bi-search"></i>
-                        <% end %>
+                        <%= show_page_icon(region) %>
                         <%= link_to edit_region_path(region), class: "btn btn-secondary btn-sm" do %>
                           <i class="bi bi-pencil"></i>
                         <% end %>
-                        <%= link_to region, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" do %>
-                          <i class="bi bi-trash"></i>
-                        <% end %>
+                        <%= delete_icon(region) %>
                       </td>
                     </tr>
                   <% end %>
