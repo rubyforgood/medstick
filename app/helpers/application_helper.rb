@@ -10,4 +10,8 @@ module ApplicationHelper
   def nav_link(label, path)
     render partial: "layouts/nav_link", locals: { label: label, path: path }
   end
+
+  def active_class(path)
+    current_page?(path) ? 'active' : ''
+  end
 end
