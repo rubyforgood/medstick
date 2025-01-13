@@ -11,10 +11,10 @@
         <div class="card-content">
           <div class="card-body">
             <p class="card-text">
-              Lorem ipsum dolor sit amet, <code>consectetur adipiscing</code> elit. Sed do eiusmod tempor incididunt ut 
-              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
+              Lorem ipsum dolor sit amet, <code>consectetur adipiscing</code> elit. Sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
               ex ea commodo consequat. Duis aute irure dolor in <code>reprehenderit</code> in voluptate velit esse cillum dolore eu fugiat nulla
-              pariatur. Excepteur sint <code>occaecat cupidatat</code> non proident, sunt in culpa qui officia deserunt mollit anim id est 
+              pariatur. Excepteur sint <code>occaecat cupidatat</code> non proident, sunt in culpa qui officia deserunt mollit anim id est
               laborum.
             </p>
             <!-- table striped -->
@@ -29,15 +29,15 @@
                 </thead>
                 <tbody>
                   <% @regions.each do |region| %>
-                    <tr>
+                    <tr id="<%= dom_id(region) %>" class="region-listing">
                       <td class="text-bold-500"><%= region.name %></td>
                       <td>1</td>
                       <td class="text-end">
-                        <%= show_page_icon(region) %>
+                        <%= show_page_tool_link(region, "Show Region Details") %>
                         <%= link_to edit_region_path(region), class: "btn btn-secondary btn-sm" do %>
                           <i class="bi bi-pencil"></i>
                         <% end %>
-                        <%= delete_icon(region) %>
+                        <%= delete_tool_link(region, "Delete Region") %>
                       </td>
                     </tr>
                   <% end %>
