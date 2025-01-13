@@ -18,10 +18,11 @@ RSpec.describe "/users", type: :request do
   # adjust the attributes here as well.
   let(:valid_attributes) { { "email_address" => "myaddress",
     "password" => "mypassword" } }
-  let(:invalid_attributes) { { "email_address" => "",
-    "password" => "" } }
-    let(:user) { FactoryBot.create(:user) }
-    let(:admin_user) { FactoryBot.create(:user, is_admin: true) }
+  let(:invalid_attributes) { { "email_address" => nil,
+    "password" => nil } }
+
+  let(:user) { FactoryBot.create(:user) }
+  let(:admin_user) { FactoryBot.create(:user, is_admin: true) }
 
   describe "As a non-admin user" do
     before do

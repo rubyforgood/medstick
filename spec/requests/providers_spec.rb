@@ -17,10 +17,8 @@ RSpec.describe "/providers", type: :request do
   # Provider. As you add validations to Provider, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) { { "name" => "myname" } }
+  let(:invalid_attributes) { { "name" => nil } }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
   let(:user) { FactoryBot.create(:user) }
   let(:admin_user) { FactoryBot.create(:user, is_admin: true) }
 

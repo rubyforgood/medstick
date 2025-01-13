@@ -17,10 +17,7 @@ RSpec.describe "/regions", type: :request do
   # Region. As you add validations to Region, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) { { "name" => "myName" } }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) { { "name" => nil } }
 
   let(:user) { FactoryBot.create(:user) }
   let(:admin_user) { FactoryBot.create(:user, is_admin: true) }
