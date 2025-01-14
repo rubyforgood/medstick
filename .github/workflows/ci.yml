@@ -53,3 +53,66 @@ jobs:
       - name: Lint code for consistent style
         run: bin/rubocop -f github
 
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Set up database
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/medstick_test
+        run: |
+          bin/rails db:create
+          bin/rails db:schema:load
+
+      - name: Run tests with coverage
+        env:
+          RAILS_ENV: test
+
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/medstick_test
+          COVERAGE: true
+        run: bin/rails spec
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: code-coverage-report
+          path: coverage
+          retention-days: 7
+
+      - name: Check coverage requirements
+        run: |
+          if [ ! -f coverage/.last_run.json ]; then
+            echo "No coverage report found!"
+            exit 1
+          fi
+          
+          COVERAGE=$(ruby -rjson -e "puts JSON.parse(File.read('coverage/.last_run.json'))['result']['line']")
+          if [ $(echo "$COVERAGE < 90" | bc -l) -eq 1 ]; then
+            echo "Coverage $COVERAGE% is below the required 90%"
+            exit 1
+          fi
+          echo "Coverage: $COVERAGE%"
+
+

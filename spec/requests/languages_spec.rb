@@ -16,13 +16,8 @@ RSpec.describe "/languages", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Language. As you add validations to Language, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:valid_attributes) { { "name" => "myname", "file_share_folder" => "this_folder" } }
+  let(:invalid_attributes) { { "name" => nil, "file_share_folder" => nil } }
 
   let(:user) { FactoryBot.create(:user) }
   let(:admin_user) { FactoryBot.create(:user, is_admin: true) }

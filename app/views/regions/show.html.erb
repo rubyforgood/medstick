@@ -1,10 +1,27 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @region %>
 
-<div>
-  <%= link_to "Edit this region", edit_region_path(@region) %> |
-  <%= link_to "Back to regions", regions_path %>
+<section id="multiple-column-form">
+  <div class="row match-height">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h2>Regions Served</h2>
+          <h4><%= @region.name %></h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <%= render @region %>
 
-  <%= button_to "Destroy this region", @region, method: :delete %>
-</div>
+            <div>
+              <%= link_to "Edit this region", edit_region_path(@region) %> |
+              <%= link_to "Back to regions", regions_path %>
+
+              <%= button_to "Destroy this region", @region, method: :delete %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,29 +1,23 @@
-<%= form_with(model: region) do |form| %>
-  <% if region.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(region.errors.count, "error") %> prohibited this region from being saved:</h2>
-
-      <ul>
-        <% region.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-<div class="form-body">
-    <div class="row">
-        <div class="col-md-4">
-          <%= form.label :name, style: "display: block" %>
+<div class="card-content">
+  <div class="card-body">
+    <p>Regions should ... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut 
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
+      ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+      pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est 
+      laborum.</p>
+    <%= form_with(model: @region, local: true, class: "form") do |f| %>
+      <div class="row">
+        <div class="col-md-12 col-12">
+          <div class="form-group">
+            <%= f.label :name, "Region Name" %>
+            <%= f.text_field :name, class: "form-control", placeholder: "Region" %>
+          </div>
         </div>
-        <div class="col-md-8 form-group">
-          <%= form.text_field :name %>
+        <div class="col-12 d-flex justify-content-end">
+          <%= submit_button(f) %>
+          <%= link_to "Cancel", regions_path, class: "btn btn-light-secondary me-1 mb-1" %>
         </div>
-    </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-
-<div class="col-sm-12 d-flex justify-content-end">
-    <%= form.submit class: "btn btn-primary me-1 mb-1" %>
-</div>
-<% end %>

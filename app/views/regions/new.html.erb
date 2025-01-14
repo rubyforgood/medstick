@@ -1,10 +1,12 @@
-<% content_for :title, "New region" %>
-
-<h1>New region</h1>
-<%= render "form", region: @region %>
-
-<br>
-
-<div class="col-sm-12 d-flex justify-content-end">
-    <%= link_to "Back to regions", regions_path %>
-</div>
+<section id="multiple-column-form">
+  <div class="row match-height">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>Create New Region</h3>
+        </div>
+        <%= render "form", region:@region %>
+      </div>
+    </div>
+  </div>
+</section>

@@ -14,7 +14,7 @@ RSpec.describe "regions/index", type: :view do
 
   it "renders a list of regions" do
     render
-    cell_selector = 'div>p'
+    cell_selector = 'tr.region-listing'
     assert_select cell_selector, text: Regexp.new("Name".to_s), count: 2
   end
 end
