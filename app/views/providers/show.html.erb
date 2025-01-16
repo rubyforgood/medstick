@@ -1,10 +1,26 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @provider %>
+<section id="multiple-column-form">
+  <div class="row match-height">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h2>Providers</h2>
+          <h4><%= @provider.name %></h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <%= render @provider %>
 
-<div>
-  <%= link_to "Edit this provider", edit_provider_path(@provider) %> |
-  <%= link_to "Back to providers", providers_path %>
+            <div>
+            <%= link_to "Edit this provider", edit_provider_path(@provider) %> |
+            <%= link_to "Back to providers", providers_path %>
 
-  <%= button_to "Destroy this provider", @provider, method: :delete %>
-</div>
+            <%= button_to "Destroy this provider", @provider, method: :delete %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
