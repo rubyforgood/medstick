@@ -1,40 +1,30 @@
-<%= form_with(model: language) do |form| %>
-  <% if language.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(language.errors.count, "error") %> prohibited this language from being saved:</h2>
-
-      <ul>
-        <% language.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-
-  <div class="form-body">
-    <div class="row">
-        <div class="col-md-4">
-          <%= form.label :name, style: "display: block" %>
+<div class="card-content">
+  <div class="card-body">
+    <p>Languages should ... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut 
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
+      ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+      pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est 
+      laborum.</p>
+    <%= form_with(model: @language, local: true, class: "form") do |f| %>
+      <div class="row">
+        <div class="col-md-12 col-12">
+          <div class="form-group">
+            <%= f.label :name, "Language Name" %>
+            <%= f.text_field :name, class: "form-control", placeholder: "Language" %>
+          </div>
         </div>
-        <div class="col-md-8 form-group">
-          <%= form.text_field :name %>
+        <div class="row">
+          <div class="col-md-12 col-12">
+            <div class="form-group">
+              <%= f.label :file_share_folder, style: "display: block" %>
+              <%= f.text_field :file_share_folder, class: "form-control", placeholder: "File Share Folder" %>
+            </div>
+          </div>
+          <div class="col-12 d-flex justify-content-end">
+            <%= submit_button(f) %>
+            <%= link_to "Cancel", languages_path, class: "btn btn-light-secondary me-1 mb-1" %>
+          </div>
         </div>
-    </div>
+    <% end %>
   </div>
-
-  <div class="form-body">
-    <div class="row">
-        <div class="col-md-4">
-          <%= form.label :file_share_folder, style: "display: block" %>
-        </div>
-        <div class="col-md-8 form-group">
-          <%= form.text_field :file_share_folder %>
-        </div>
-    </div>
-  </div>
-
-  <div class="col-sm-12 d-flex justify-content-end">
-    <%= form.submit class: "btn btn-primary me-1 mb-1" %>
-  </div>
-<% end %>
+</div>
