@@ -16,7 +16,7 @@ RSpec.describe "providers/index", type: :view do
 
   it "renders a list of providers" do
     render
-    cell_selector = 'div>p'
+    cell_selector = 'tr.provider-listing > td'
     assert_select cell_selector, text: Regexp.new("Name".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("Provider Type".to_s), count: 2
   end

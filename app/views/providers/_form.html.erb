@@ -1,9 +1,9 @@
 <div class="card-content">
   <div class="card-body">
-    <p>Providers should ... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut 
-      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
+    <p>Providers should ... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
       ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-      pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est 
+      pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
       laborum.</p>
     <%= form_with(model: @provider, local: true, class: "form") do |f| %>
       <div class="row">
@@ -13,18 +13,15 @@
             <%= f.text_field :name, class: "form-control", placeholder: "Provider" %>
           </div>
         </div>
-
-        <div class="form-body">
-          <div class="row">
-            <div class="col-md-4">
-              <%= f.label :provider_type, style: "display: block" %>
-            </div>
-            <div class="col-md-8 form-group">
-              <%= f.text_field :provider_type %>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-12">
+          <div class="form-group">
+            <%= f.label :provider_type, style: "display: block" %>
+            <%= f.text_field :provider_type, class: "form-control" %>
           </div>
         </div>
-        
+
         <div class="col-12 d-flex justify-content-end">
           <%= submit_button(f) %>
           <%= link_to "Cancel", providers_path, class: "btn btn-light-secondary me-1 mb-1" %>

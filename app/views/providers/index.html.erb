@@ -31,7 +31,7 @@
                   <% @providers.each do |provider| %>
                     <tr id="<%= dom_id(provider) %>" class="provider-listing">
                       <td class="text-bold-500"><%= provider.name %></td>
-                      <td>1</td>
+                      <td><%= provider.provider_type %></td>
                       <td class="text-end">
                         <%= show_page_tool_link(provider, "Show Provider Details") %>
                         <%= link_to edit_provider_path(provider), class: "btn btn-secondary btn-sm" do %>
