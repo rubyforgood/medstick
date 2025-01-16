@@ -1,11 +1,12 @@
-<% content_for :title, "New provider" %>
-
-<h1>New provider</h1>
-
-<%= render "form", provider: @provider %>
-
-<br>
-
-<div>
-  <%= link_to "Back to providers", providers_path %>
-</div>
+<section id="multiple-column-form">
+  <div class="row match-height">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>Create New Provider</h3>
+        </div>
+        <%= render "form", provider:@providers %>
+      </div>
+    </div>
+  </div>
+</section>
