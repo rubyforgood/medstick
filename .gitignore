@@ -39,3 +39,6 @@
 /node_modules
 coverage
 .DS_Store
+
+# Ignore import files directory for data from old app
+/import_files
