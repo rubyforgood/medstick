@@ -3,6 +3,15 @@ module ApplicationHelper
     render partial: "layouts/sidebar"
   end
 
+  def flash_messages
+    render "layouts/flash"
+  end
+
+  def turbo_stream_flash_messages
+    turbo_stream.prepend "flash", partial: "layouts/flash_messages"
+  end
+
+
   def linked_logo
     render partial: "layouts/linked_logo"
   end
