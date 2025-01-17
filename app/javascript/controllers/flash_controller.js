@@ -11,7 +11,8 @@ export default class extends Controller {
     if (this.messageValue) {
       const Toast = Swal.mixin({
         toast: true,
-        position: 'top-end',
+        position: 'top',
+        width: '600px',
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true
