@@ -77,10 +77,15 @@
     <script src="https://cdn.jsdelivr.net/gh/zuramai/mazer@docs/demo/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/zuramai/mazer@docs/demo/assets/compiled/js/app.js"></script>
     <div id="app">
-        <%= sidebar %>
-
+      <%= sidebar %>
       <div id="main" class='layout-navbar navbar-fixed'>
         <div id="main-content">
+          <% flash.each do |type, message| %>
+            <div data-controller="flash"
+                 data-flash-message-value="<%= message %>"
+                 data-flash-type-value="<%= type == 'notice' ? 'success' : 'error' %>">
+            </div>
+          <% end %>
           <%= yield %>
         </div>
         <footer>
