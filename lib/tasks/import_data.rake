@@ -26,4 +26,17 @@ namespace :import_data do
       puts "User #{user.email_address} created"
     end
   end
+
+  desc "Import Topics and their associations"
+  task topics: :environment do
+    file_path = Rails.root.join("import_files", "Topics.csv")
+    data = CSV.read(file_path, headers: true)
+    data.each do |row|
+      topic = Topic.find_or_create_by!(name: row["Topic_Name"])
+      provider = Provider.find_by(name: row["Provider_Name"])
+      topic.providers << provider
+      puts "Topic #{topic.name} associated with provider #{provider.name}"
+    end
+    
+  end
 end
