@@ -16,7 +16,7 @@ RSpec.describe "languages/index", type: :view do
 
   it "renders a list of languages" do
     render
-    cell_selector = 'div>p'
+    cell_selector = 'tr.language-listing > td'
     assert_select cell_selector, text: Regexp.new("Name".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("File Share Folder".to_s), count: 2
   end
