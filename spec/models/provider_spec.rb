@@ -5,4 +5,9 @@ RSpec.describe Provider, type: :model do
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name) }
   end
+
+  describe 'associations' do
+    subject {FactoryBot.build(:provider) }
+    it { should have_many :users }
+  end
 end

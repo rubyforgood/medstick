@@ -1,48 +1,39 @@
-<%= form_with(model: user) do |form| %>
-  <% if user.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-        <% user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="card-content">
+  <div class="card-body">
+    <p>Regions should ... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut 
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
+      ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+      pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est 
+      laborum.</p>
+    <%= form_with(model: @user, local: true, class: "form") do |f| %>
+      <div class="row">
+        <div class="col-md-12 col-12">
+          <div class="form-group">
+            <%= f.label :email_address, "Email Address" %>
+            <%= f.text_field :email_address, class: "form-control", placeholder: "email@example.com" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <%= f.label :provider_id, style: "display: block" %>
+          </div>
+        <div class="col-md-8 form-group">
+          <%= f.collection_select(:provider_id, Provider.all, :id, :name, include_blank: "No provider (user must be an admin)") %>
+        </div>
     </div>
-  <% end %>
-
-  <div class="form-body">
     <div class="row">
         <div class="col-md-4">
-          <%= form.label :email_address, style: "display: block" %>
+          <%= f.label :is_admin, style: "display: block" %>
         </div>
         <div class="col-md-8 form-group">
-          <%= form.text_field :email_address %>
+          <%= f.checkbox :is_admin %>
         </div>
     </div>
-    <% if @user.new_record? %>
-      <div class="row">
-          <div class="col-md-4">
-            <%= form.label :password, style: "display: block" %>
-          </div>
-          <div class="col-md-8 form-group">
-            <%= form.text_field :password %>
-          </div>
+        <div class="col-12 d-flex justify-content-end">
+          <%= submit_button(f) %>
+          <%= link_to "Cancel", users_path, class: "btn btn-light-secondary me-1 mb-1" %>
+        </div>
       </div>
     <% end %>
-    <div class="row">
-        <div class="col-md-4">
-          <%= form.label :is_admin, style: "display: block" %>
-        </div>
-        <div class="col-md-8 form-group">
-          <%= form.checkbox :is_admin %>
-        </div>
-    </div>
+  </div>
 </div>
-
-
-<div class="col-sm-12 d-flex justify-content-end">
-    <%= form.submit class: "btn btn-primary me-1 mb-1" %>
-</div>
-
-<% end %>

@@ -1,12 +1,14 @@
 <% content_for :title, "Editing user" %>
 
-<h1>Editing user</h1>
-
-<%= render "form", user: @user %>
-
-<br>
-
-<div>
-  <%= link_to "Show this user", @user %> |
-  <%= link_to "Back to users", users_path %>
-</div>
+<section id="multiple-column-form">
+  <div class="row match-height">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>Edit Users</h3>
+        </div>
+        <%= render "form", user:@user %>
+      </div>
+    </div>
+  </div>
+</section>

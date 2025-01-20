@@ -1,16 +1,51 @@
-<p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Users" %>
-
-<h1>Users</h1>
-
-<div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New user", new_user_path %>
+<section class="section">
+  <div class="row" id="table-striped">
+    <div class="col-12 cold-md-12">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h2>Users</h2>
+          <%= link_to new_user_path, class: "btn btn-primary" do %>
+            <i class="bi bi-plus-circle-fill"></i> Add New User
+          <% end %>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <p class="card-text">
+              Lorem ipsum dolor sit amet, <code>consectetur adipiscing</code> elit. Sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+              ex ea commodo consequat. Duis aute irure dolor in <code>reprehenderit</code> in voluptate velit esse cillum dolore eu fugiat nulla
+              pariatur. Excepteur sint <code>occaecat cupidatat</code> non proident, sunt in culpa qui officia deserunt mollit anim id est
+              laborum.
+            </p>
+            <!-- table striped -->
+            <div class="table-responsive">
+              <table class="table table-lg table-striped mb-0">
+                <thead>
+                  <tr>
+                    <th>Users</th>
+                    <th>Provider</th>
+                    <th class="text-end">User Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @users.each do |user| %>
+                    <tr id="<%= dom_id(user) %>" class="user-listing">
+                      <td class="text-bold-500"><%= user.email_address %></td>
+                      <td><%= user.provider.name if user.provider.present? %></td>
+                      <td class="text-end">
+                        <%= show_page_tool_link(user, "Show User Details") %>
+                        <%= link_to edit_user_path(user), class: "btn btn-secondary btn-sm" do %>
+                          <i class="bi bi-pencil"></i>
+                        <% end %>
+                        <%= delete_tool_link(user, "Delete User") %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
