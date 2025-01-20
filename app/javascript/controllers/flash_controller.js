@@ -13,14 +13,29 @@ export default class extends Controller {
         toast: true,
         position: 'top',
         width: '600px',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true
+        padding: '1.5rem',
+        showClass: {
+          popup: ''
+        },
+        hideClass: {
+          popup: ''
+        },
+        showConfirmButton: true,
+        buttonsStyling: true,
+        showCloseButton: false,
+        customClass: {
+          confirmButton: 'swal2-confirm swal2-styled',
+          actions: 'swal2-actions-right',
+          popup: 'swal2-popup-custom',
+          title: 'swal2-title-custom',
+          icon: 'swal2-icon-custom'
+        }
       })
 
       Toast.fire({
         icon: this.typeValue || 'success',
-        title: this.messageValue
+        title: this.messageValue,
+        width: '600px'
       })
     }
   }

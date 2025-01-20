@@ -37,6 +37,13 @@ module ApplicationHelper
   end
 
   def delete_tool_link(item, label = "Delete")
-    link_to '<i class="bi bi-trash"></i>'.html_safe, item, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm"
+    link_to '<i class="bi bi-trash"></i>'.html_safe,
+            item,
+            class: "btn btn-danger btn-sm",
+            data: {
+              turbo_method: :delete,
+              turbo_confirm: "Are you sure you want to delete this?"
+            },
+            aria: { label: label }
   end
 end
