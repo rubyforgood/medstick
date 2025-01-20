@@ -7,7 +7,7 @@ RSpec.describe Provider, type: :model do
   end
 
   describe 'associations' do
-    subject {FactoryBot.build(:provider) }
+    subject { FactoryBot.build(:provider) }
     it { should have_many :users }
   end
 end

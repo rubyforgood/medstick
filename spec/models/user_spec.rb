@@ -8,7 +8,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'associations' do
-    subject {FactoryBot.build(:user) }
+    subject { FactoryBot.build(:user) }
     it { should belong_to(:provider).optional }
   end
 end
