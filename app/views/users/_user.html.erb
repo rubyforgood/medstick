@@ -9,4 +9,9 @@
     <%= user.is_admin %>
   </p>
 
+  <p>
+    <strong>Provider:</strong>
+    <%= user.provider.present? ? user.provider.name : "No provider" %>
+  </p>
+
 </div>
