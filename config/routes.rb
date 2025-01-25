@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :providers
   resources :users
   resources :regions
+  resources :topics
   resource :session
   resources :passwords, param: :token
 

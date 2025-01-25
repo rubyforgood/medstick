@@ -1,0 +1,26 @@
+<p style="color: green"><%= notice %></p>
+
+<section id="multiple-column-form">
+  <div class="row match-height">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h2>Topics</h2>
+          <h4><%= @topic.title %></h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <%= render @topic %>
+
+            <div>
+              <%= link_to "Edit this topic", edit_topic_path(@topic) %> |
+              <%= link_to "Back to topics", topics_path %>
+
+              <%= button_to "Destroy this topic", @topic, method: :delete %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
