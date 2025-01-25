@@ -16,8 +16,11 @@
             <span>Dashboard</span>
           </a>
         </li>
+        <li class="sidebar-item ">
+          <%= nav_link("Topics", topics_path, "translate") %>
+        </li>
 
-        <li
+        <%# <li
                 class="sidebar-item  has-sub">
           <a href="#" class='sidebar-link'>
             <i class="bi bi-folder"></i>
@@ -43,7 +46,7 @@
               <a href="form-element-textarea.html" class="submenu-link">Textarea</a>
             </li>
           </ul>
-        </li>
+        </li> %>
         <% if current_user_is_admin? %>
           <li class="sidebar-title">Admin Tools</li>
           <li class="sidebar-item <%= active_class(:regions) %>">
