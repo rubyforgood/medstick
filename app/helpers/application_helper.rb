@@ -3,6 +3,15 @@ module ApplicationHelper
     render partial: "layouts/sidebar"
   end
 
+  def flash_messages
+    render "layouts/flash"
+  end
+
+  def turbo_stream_flash_messages
+    turbo_stream.prepend "flash", partial: "layouts/flash_messages"
+  end
+
+
   def linked_logo
     render partial: "layouts/linked_logo"
   end
@@ -28,6 +37,13 @@ module ApplicationHelper
   end
 
   def delete_tool_link(item, label = "Delete")
-    link_to '<i class="bi bi-trash"></i>'.html_safe, item, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm"
+    link_to '<i class="bi bi-trash"></i>'.html_safe,
+            item,
+            class: "btn btn-danger btn-sm",
+            data: {
+              turbo_method: :delete,
+              turbo_confirm: "Are you sure you want to delete this?"
+            },
+            aria: { label: label }
   end
 end

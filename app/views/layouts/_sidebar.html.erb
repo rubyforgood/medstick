@@ -59,6 +59,12 @@
             <%= nav_link("Users", users_path, "people") %>
           </li>
         <% end %>
+        <li class="sidebar-item">
+          <%= link_to session_path, class: 'sidebar-link', data: { turbo_method: :delete } do %>
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Sign Out</span>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>

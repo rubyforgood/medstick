@@ -27,7 +27,7 @@ class RegionsController < ApplicationController
 
     respond_to do |format|
       if @region.save
-        format.html { redirect_to @region, notice: "Region was successfully created." }
+        format.html { redirect_to @region, notice: "#{@region.name} Region was successfully added to the system." }
         format.json { render :show, status: :created, location: @region }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class RegionsController < ApplicationController
     @region.destroy!
 
     respond_to do |format|
-      format.html { redirect_to regions_path, status: :see_other, notice: "Region was successfully destroyed." }
+      format.html { redirect_to regions_path, status: :see_other, notice: "#{@region.name} Region was removed from the system." }
       format.json { head :no_content }
     end
   end
